@@ -1,0 +1,27 @@
+layout {
+    default_tab_template cwd="~/Workspace/hodor/" {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="editor" focus=true{
+      pane command="nvim" cwd="~/Workspace/hodor/" {
+        focus true
+        args "."
+      }
+    }
+    tab name="server" cwd="~/Workspace/hodor" {
+      pane command="yarn" {
+        args "start:watch"
+      }
+      pane
+    }
+}
+
+session_name "hodor"
+attach_to_session true

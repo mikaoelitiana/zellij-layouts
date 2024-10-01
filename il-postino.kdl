@@ -1,0 +1,29 @@
+layout {
+    cwd "~/Workspace/il-postino/"
+
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="editor" focus=true{
+      pane command="nvim" {
+        args "."
+        focus true
+      }
+    }
+
+    tab name="server" {
+      pane command="yarn" {
+        args "start:watch"
+      }
+      pane
+    }
+}
+session_name "il-postino"
+attach_to_session true

@@ -1,0 +1,27 @@
+layout {
+    default_tab_template cwd="~/Workspace/backstage/" {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="editor" focus=true{
+      pane command="fish" cwd="~/Workspace/backstage/" borderless=true {
+        focus true
+        args "-c" "asdf shell nodejs 18.20.3 && nvim ."
+      }
+    }
+
+    tab name="server" cwd="~/Workspace/backstage/" borderless=true {
+      pane command="fish" {
+        args "-c" "asdf shell nodejs 18.20.3 && yarn dev"
+      }
+      pane
+    }
+}
+session_name "backstage"
+attach_to_session true

@@ -1,0 +1,33 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="work" focus=true split_direction="Vertical" {
+        pane split_direction="Vertical" {
+            pane name="editor" command="/opt/homebrew/bin/fish" focus=true {
+                args "-c" "cd ~/Workspace/horizon-web-ui-kit && nvim ."
+            }
+        }
+    }
+
+    tab name="server" {
+        pane command="pnpm" cwd="~/Workspace/horizon-web-ui-kit/" {
+          args "run" "uikit:storybook"
+        }
+        pane command="pnpm" cwd="~/Workspace/horizon-web-ui-kit/packages/ui-kit/" {
+          args "build" "-w"
+        }
+        pane command="pnpm" cwd="~/Workspace/horizon-web-ui-kit/packages/sandbox-horizon/" {
+          args "dev"
+        }
+    }
+    
+}
+session_name "horizon-web-ui"
+attach_to_session true

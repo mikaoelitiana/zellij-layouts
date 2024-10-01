@@ -1,0 +1,27 @@
+layout {
+    cwd "~/Workspace/public-website/"
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="editor" focus=true {
+      pane command="nvim" cwd="~/Workspace/public-website/" {
+        focus true
+        args "."
+      }
+    }
+    tab name="server" {
+      pane command="pnpm" {
+        args "develop:https"
+      }
+      pane
+    }
+}
+session_name "pubweb"
+attach_to_session true
